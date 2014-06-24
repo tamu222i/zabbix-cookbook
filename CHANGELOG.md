@@ -1,6 +1,6 @@
 # 0.1.0
 
-Initial release of zabbix-cookbook/
+Initial release of zabbix-cookbook
 
 * Enhancements
   * an enhancement

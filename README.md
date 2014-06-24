@@ -1,4 +1,4 @@
-# zabbix-cookbook/-cookbook
+# zabbix-cookbook-cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -16,7 +16,7 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['zabbix-cookbook/']['bacon']</tt></td>
+    <td><tt>['zabbix-cookbook']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -25,14 +25,14 @@ TODO: List your supported platforms.
 
 ## Usage
 
-### zabbix-cookbook/::default
+### zabbix-cookbook::default
 
-Include `zabbix-cookbook/` in your node's `run_list`:
+Include `zabbix-cookbook` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[zabbix-cookbook/::default]"
+    "recipe[zabbix-cookbook::default]"
   ]
 }
 ```

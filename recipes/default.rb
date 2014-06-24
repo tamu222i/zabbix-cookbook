@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: zabbix-cookbook/
+# Cookbook Name:: zabbix-cookbook
 # Recipe:: default
 #
 # Copyright (C) 2014 YOUR_NAME
