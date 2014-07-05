@@ -38,3 +38,17 @@ end
     action [:enable, :start]
   end
 end
+
+execute "create zabbix database" do
+  command <<-EOF
+    echo "create database zabbix character set utf8 collate utf8_bin;" | mysql -uroot
+    echo "grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbix';" | mysql -uroot
+    cd /usr/share/doc/zabbix-server-mysql-2.2.*/create
+    mysql -uroot zabbix < schema.sql
+    mysql -uroot zabbix < images.sql
+    mysql -uroot zabbix < data.sql
+  EOF
+  not_if "mysqlshow | grep zabbix"
+end
+
+
