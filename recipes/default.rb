@@ -31,3 +31,10 @@ end
     action :install
   end
 end
+
+%w(mysqld).each do |s|
+  service s do
+    supports :status => true, :restart => true
+    action [:enable, :start]
+  end
+end
