@@ -25,6 +25,13 @@ TODO: List your supported platforms.
 
 ## Usage
 
+### Berksfile
+
+```
+cookbook 'zabbix', 
+  :git => 'https://github.com/tamu222i/zabbix-cookbook.git'
+```
+
 ### zabbix-cookbook::default
 
 Include `zabbix-cookbook` in your node's `run_list`:
@@ -32,7 +39,7 @@ Include `zabbix-cookbook` in your node's `run_list`:
 ```json
 {
   "run_list": [
-    "recipe[zabbix-cookbook::default]"
+    "recipe[zabbix]"
   ]
 }
 ```
