@@ -1,4 +1,4 @@
-name             'zabbix-cookbook'
+name             'zabbix'
 maintainer       'YOUR_NAME'
 maintainer_email 'YOUR_EMAIL'
 license          'All rights reserved'
