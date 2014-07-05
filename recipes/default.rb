@@ -8,7 +8,7 @@
 #
 
 # https://www.zabbix.com/documentation/2.2/manual/installation/requirements
-%w(mysql-server httpd php).each do |p|
+%w(mysql-server httpd php php-mysql).each do |p|
   package p do
     action :install
   end
