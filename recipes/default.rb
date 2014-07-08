@@ -67,6 +67,6 @@ end
     mode 0640
     owner "root"
     group "zabbix"
-    notifies :reload, "service[zabbix-server]",
+    notifies :reload, "service[zabbix-server]"
   end
 end
