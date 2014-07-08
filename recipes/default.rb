@@ -56,7 +56,7 @@ end
   execute f do
     command <<-EOF
       cat #{f} > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-      echo "DBPassword=zabbix" > > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+      echo "DBPassword=zabbix" >> "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
     EOF
     not_if File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")
   end
