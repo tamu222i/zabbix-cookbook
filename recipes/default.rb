@@ -58,7 +58,7 @@ end
       cat #{f} > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
       echo "DBPassword=zabbix" >> "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
     EOF
-    not_if File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")
+    not_if {File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")}
   end
 
   template f do
@@ -68,5 +68,25 @@ end
     owner "root"
     group "zabbix"
     notifies :reload, "service[zabbix-server]"
+  end
+end
+
+%w(/etc/php.ini).each do |f|
+  filename = File.basename(f)
+  execute f do
+    command <<-EOF
+      cat #{f} > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+      echo "date.timezone = Asia/Tokyo" >> "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+    EOF
+    not_if {File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")}
+  end
+
+  template f do
+    local true
+    source "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+    mode 0644
+    owner "root"
+    group "root"
+    notifies :reload, "service[httpd]"
   end
 end
