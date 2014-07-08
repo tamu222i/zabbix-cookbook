@@ -51,4 +51,21 @@ execute "create zabbix database" do
   not_if "mysqlshow | grep zabbix"
 end
 
+%w(/etc/zabbix/zabbix_server.conf).each do |f|
+  filename = File.basename(f)
+  execute f do
+    command <<-EOF
+      cat #{f} > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+      echo "DBPassword=zabbix" > > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+    EOF
+    not_if File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")
+  end
 
+  template f do
+    local true
+    source "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+    mode 0664
+    owner "root"
+    group "root"
+  end
+end
