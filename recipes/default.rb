@@ -76,7 +76,7 @@ end
   execute f do
     command <<-EOF
       cat #{f} > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-      echo "date.timezone = 'Asia/Tokyo'" >> "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+      echo 'date.timezone = "Asia/Tokyo"' >> "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
     EOF
     not_if {File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")}
   end
@@ -84,6 +84,17 @@ end
   template f do
     local true
     source "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
+    mode 0644
+    owner "root"
+    group "root"
+    notifies :reload, "service[httpd]"
+  end
+end
+
+%w(/etc/zabbix/web/zabbix.conf.php).each do |f|
+  filename = File.basename(f)
+  template f do
+    source "#{filename}.erb"
     mode 0644
     owner "root"
     group "root"
