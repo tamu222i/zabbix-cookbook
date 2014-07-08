@@ -64,8 +64,9 @@ end
   template f do
     local true
     source "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-    mode 0664
+    mode 0640
     owner "root"
-    group "root"
+    group "zabbix"
+    notifies :reload, "service[zabbix-server]",
   end
 end
