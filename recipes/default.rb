@@ -32,7 +32,7 @@ end
   end
 end
 
-%w(mysqld).each do |s|
+%w(mysqld zabbix-server).each do |s|
   service s do
     supports :status => true, :restart => true
     action [:enable, :start]
