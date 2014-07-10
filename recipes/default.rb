@@ -59,7 +59,7 @@ end
 
 %w(/etc/php.ini).each do |f|
   file = Chef::Util::FileEdit.new(f)
-  file.insert_line_if_no_match(/^date.timezone = \"Asia/Tokyo\"$/, 'date.timezone = "Asia/Tokyo"')
+  file.insert_line_if_no_match(/^date.timezone = "Asia\/Tokyo"$/, 'date.timezone = "Asia/Tokyo"')
   file.write_file
 end
 
