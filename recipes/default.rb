@@ -58,23 +58,9 @@ end
 end
 
 %w(/etc/php.ini).each do |f|
-  filename = File.basename(f)
-  execute f do
-    command <<-EOF
-      cat #{f} > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-      echo 'date.timezone = "Asia/Tokyo"' >> "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-    EOF
-    not_if {File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")}
-  end
-
-  template f do
-    local true
-    source "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-    mode 0644
-    owner "root"
-    group "root"
-    notifies :reload, "service[httpd]"
-  end
+  file = Chef::Util::FileEdit.new(f)
+  file.insert_line_if_no_match(/^date.timezone = "Asia/Tokyo"$/, 'date.timezone = "Asia/Tokyo"')
+  file.write_file
 end
 
 %w(/etc/zabbix/web/zabbix.conf.php).each do |f|
