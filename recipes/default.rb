@@ -52,23 +52,9 @@ execute "create zabbix database" do
 end
 
 %w(/etc/zabbix/zabbix_server.conf).each do |f|
-  filename = File.basename(f)
-  execute f do
-    command <<-EOF
-      cat #{f} > "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-      echo "DBPassword=zabbix" >> "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-    EOF
-    not_if {File.exists?("#{Chef::Config[:file_cache_path]}/#{filename}")}
-  end
-
-  template f do
-    local true
-    source "#{Chef::Config[:file_cache_path]}/#{filename}.erb"
-    mode 0640
-    owner "root"
-    group "zabbix"
-    notifies :reload, "service[zabbix-server]"
-  end
+  file = Chef::Util::FileEdit.new(path)
+  file.insert_line_if_no_match(/^DBPassword=zabbix$/, "DBPassword=zabbix")
+  file.write_file
 end
 
 %w(/etc/php.ini).each do |f|
