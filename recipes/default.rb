@@ -52,7 +52,7 @@ execute "create zabbix database" do
 end
 
 %w(/etc/zabbix/zabbix_server.conf).each do |f|
-  file = Chef::Util::FileEdit.new(path)
+  file = Chef::Util::FileEdit.new(f)
   file.insert_line_if_no_match(/^DBPassword=zabbix$/, "DBPassword=zabbix")
   file.write_file
 end
