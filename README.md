@@ -15,7 +15,7 @@ Chef Development Kit Version: 0.1.0
 
 ## Usage
 
-### Use Bershelf
+### Use Berkshelf
 
 Add Berksfile:
 
