@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: zabbix-cookbook
+# Cookbook Name:: zabbix
 # Recipe:: default
 #
-# Copyright (C) 2014 YOUR_NAME
+# Copyright (C) 2014 tamu222i
 #
 # All rights reserved - Do Not Redistribute
 #
