@@ -1,38 +1,27 @@
-# zabbix-cookbook-cookbook
+# zabbix-cookbook
 
-TODO: Enter the cookbook description here.
+Chef cookbook for Zabbix.
+Use offical Zabbix packages & minimal other packages.
+Version 2.2.
+https://www.zabbix.com/documentation/2.2/manual/installation/install_from_packages
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+CentOS6.x
 
-## Attributes
+## Requirement
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['zabbix-cookbook']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+Chef Development Kit Version: 0.1.0
 
 ## Usage
 
-### Berksfile
+### Use Bershelf
+
+Add Berksfile:
 
 ```
-cookbook 'zabbix', 
-  :git => 'https://github.com/tamu222i/zabbix-cookbook.git'
+cookbook 'zabbix', :git => 'https://github.com/tamu222i/zabbix-cookbook.git'
 ```
-
-### zabbix-cookbook::default
 
 Include `zabbix-cookbook` in your node's `run_list`:
 
@@ -43,6 +32,8 @@ Include `zabbix-cookbook` in your node's `run_list`:
   ]
 }
 ```
+
+and cook.
 
 ## Contributing
 
@@ -55,4 +46,6 @@ Include `zabbix-cookbook` in your node's `run_list`:
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+The MIT License (MIT)
+
+Copyright (c) 2014 tamu222i
