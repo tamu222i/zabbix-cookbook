@@ -3,7 +3,5 @@
 Initial release of zabbix-cookbook
 
 * Enhancements
-  * an enhancement
-
-* Bug Fixes
-  * a bug fix
+  * zabbix2.2
+  * centos6.x
