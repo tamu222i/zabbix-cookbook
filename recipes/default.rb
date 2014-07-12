@@ -51,16 +51,25 @@ execute "create zabbix database" do
   not_if "mysqlshow | grep zabbix"
 end
 
+# http://qiita.com/sawanoboly/items/355288c4592bdf4a3550
 %w(/etc/zabbix/zabbix_server.conf).each do |f|
-  file = Chef::Util::FileEdit.new(f)
-  file.insert_line_if_no_match(/^DBPassword=zabbix$/, "DBPassword=zabbix")
-  file.write_file
+  file f do
+    content lazy {
+      _file = Chef::Util::FileEdit.new(path)
+      _file.insert_line_if_no_match(/^DBPassword=zabbix$/, "DBPassword=zabbix")
+      _file.send(:editor).lines.join
+    }
+  end
 end
 
 %w(/etc/php.ini).each do |f|
-  file = Chef::Util::FileEdit.new(f)
-  file.insert_line_if_no_match(/^date.timezone = "Asia\/Tokyo"$/, 'date.timezone = "Asia/Tokyo"')
-  file.write_file
+  file f do
+    content lazy {
+      _file = Chef::Util::FileEdit.new(f)
+      _file.insert_line_if_no_match(/^date.timezone = "Asia\/Tokyo"$/, 'date.timezone = "Asia/Tokyo"')
+      _file.send(:editor).lines.join
+    }
+  end
 end
 
 %w(/etc/zabbix/web/zabbix.conf.php).each do |f|
